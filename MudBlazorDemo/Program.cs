@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using MudBlazor.Services;
 using MudBlazorDemo.Data;
 using MudBlazorDemo.Data.DbContexts;
+using MudBlazorDemo.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Services.AddMudServices();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 var app = builder.Build();
 
